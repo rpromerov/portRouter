@@ -1,0 +1,29 @@
+ Use an official Rocky Linux as a parent image
+FROM rockylinux:8
+
+# Install necessary packages
+RUN yum -y update && \
+    yum -y install openssh-server && \
+    yum clean all
+
+# Set up SSH server
+RUN ssh-keygen -A
+RUN echo 'root:password' | chpasswd
+
+# Add a user named student with password "usm2024"
+RUN useradd -m estudiante && \
+    echo 'estudiante:usm2024' | chpasswd
+
+# Allow SSH access for the student user
+RUN mkdir -p /home/estudiante/.ssh && \
+    chown estudiante:estudiante /home/estudiante/.ssh && \
+    chmod 700 /home/estudiante/.ssh
+
+# Remove /etc/nologin if it exists
+RUN rm -f /run/nologin
+
+# Expose SSH port
+EXPOSE 22
+
+# Start SSH service and remove /etc/nologin at runtime
+CMD ["/bin/bash", "-c", "rm -f /run/nologin && /usr/sbin/sshd -D"]

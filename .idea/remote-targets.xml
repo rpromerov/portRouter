@@ -2,10 +2,10 @@
 <project version="4">
   <component name="RemoteTargetsManager">
     <targets>
-      <target name="root@192.168.1.189:22" type="ssh/sftp" uuid="5f28032f-877d-4721-b578-d7630d93295a">
+      <target name="root@192.168.1.85:22" type="ssh/sftp" uuid="5f28032f-877d-4721-b578-d7630d93295a">
         <config>
           <option name="projectRootOnTarget" value="/root/portRouter" />
-          <option name="serverName" value="root@192.168.1.189:22 password" />
+          <option name="serverName" value="root@10.32.107.143:22 password" />
         </config>
         <ContributedStateBase type="GoLanguageRuntime">
           <config>
